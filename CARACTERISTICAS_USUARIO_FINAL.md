@@ -934,6 +934,223 @@ Cada vez que el transportista actualiza el estado del envío, el sistema envía 
 - Los mensajes por WhatsApp se envían automáticamente, no requieren acción adicional
 - Si hay un error al enviar el mensaje, el estado del envío se actualiza igualmente
 
+---
+
+## 🛍️ Tienda Web Online
+
+El sistema incluye una tienda web pública donde los clientes pueden ver todos los productos disponibles con sus imágenes, precios y stock, sin necesidad de iniciar sesión.
+
+### Acceso a la Tienda
+- La tienda está disponible en una dirección web pública
+- **No requiere iniciar sesión**: Cualquiera puede ver los productos
+- Diseño moderno y fácil de usar
+- Funciona perfectamente en computadoras, tablets y celulares
+
+### Página de Inicio
+Al entrar a la tienda, verás:
+
+#### Sección Principal (Hero)
+- Mensaje de bienvenida
+- Botón para ver todos los productos
+- Diseño atractivo con colores llamativos
+
+#### Productos Destacados
+- Muestra los primeros productos disponibles
+- Cada producto se muestra en una tarjeta con:
+  - Imagen del producto
+  - Nombre del producto
+  - Precio destacado
+  - Categoría y marca
+  - Indicador de stock disponible
+- Botón para ver más productos
+
+#### Características de la Tienda
+- **Envío Rápido**: Información sobre entregas rápidas y seguras
+- **Pago Seguro**: Múltiples formas de pago disponibles
+- **Calidad Garantizada**: Productos de la mejor calidad
+
+### Página de Productos
+Lista completa de todos los productos disponibles:
+
+#### Ver Productos
+- Grid de productos con imágenes
+- Cada tarjeta muestra:
+  - Imagen principal del producto
+  - Nombre completo
+  - Precio de venta
+  - Categoría (con color distintivo)
+  - Marca
+  - Stock disponible
+  - Badge "En Stock" si hay unidades disponibles
+
+#### Buscar Productos
+- **Barra de búsqueda**: Escribe el nombre del producto que buscas
+- Los resultados se actualizan mientras escribes
+- Busca en el nombre y descripción de los productos
+
+#### Filtrar Productos
+Puedes filtrar los productos por:
+
+1. **Por Categoría**: 
+   - Selecciona una categoría del menú desplegable
+   - Ver solo productos de esa categoría
+   - Ejemplo: "Electrónica", "Ropa", etc.
+
+2. **Por Marca**:
+   - Selecciona una marca del menú desplegable
+   - Ver solo productos de esa marca
+   - Ejemplo: "Samsung", "Nike", etc.
+
+3. **Por Sucursal**:
+   - Selecciona una sucursal del menú desplegable
+   - Ver solo productos disponibles en esa sucursal
+   - Útil para saber qué hay disponible cerca de ti
+
+#### Combinar Filtros
+- Puedes usar varios filtros al mismo tiempo
+- Por ejemplo: buscar "notebook" de la marca "HP" en la "Sucursal Centro"
+- Los resultados se actualizan automáticamente
+- Botón para limpiar todos los filtros
+
+#### Información Mostrada
+Cada producto en la lista muestra:
+- **Imagen**: Foto del producto (si está disponible)
+- **Nombre**: Descripción completa del producto
+- **Precio**: Precio de venta en formato de moneda
+- **Categoría**: Etiqueta con color que indica la categoría
+- **Marca**: Nombre de la marca
+- **Stock**: Cantidad de unidades disponibles
+- **Estado**: Badge verde "En Stock" si hay unidades
+
+### Detalle de Producto
+Al hacer clic en un producto, verás su página de detalle:
+
+#### Galería de Imágenes
+- **Imagen Principal**: Foto grande del producto
+- **Miniaturas**: Si el producto tiene varias imágenes, puedes verlas todas
+- Hacer clic en una miniatura para verla en grande
+- Las imágenes se muestran en alta calidad
+
+#### Información del Producto
+- **Nombre Completo**: Descripción completa del producto
+- **Precio**: Precio destacado en grande
+- **Categoría y Marca**: Etiquetas con colores distintivos
+- **Estado de Stock**: 
+  - "✓ En Stock" en verde si hay unidades disponibles
+  - "Sin Stock" en rojo si no hay unidades
+  - Cantidad total disponible
+
+#### Stock por Sucursal
+- Muestra el stock disponible en cada sucursal
+- Lista todas las sucursales donde hay stock
+- Indica cuántas unidades hay en cada una
+- Útil para saber dónde está disponible el producto
+
+#### Descripción
+- Información adicional sobre el producto
+- Características y detalles
+
+#### Botón de Contacto
+- Botón para contactar y realizar la compra
+- Al hacer clic, puedes obtener información de contacto
+- Próximamente: sistema de compra online
+
+### Características de la Tienda Web
+
+#### Diseño Moderno
+- Interfaz limpia y profesional
+- Colores atractivos y modernos
+- Animaciones suaves al pasar el mouse
+- Diseño que inspira confianza
+
+#### Responsive (Adaptable)
+- **En Computadora**: Grid de 4 columnas, navegación completa
+- **En Tablet**: Grid de 2 columnas, menú adaptado
+- **En Celular**: Grid de 1 columna, menú hamburguesa
+- Se adapta perfectamente a cualquier tamaño de pantalla
+
+#### Navegación Fácil
+- Menú superior siempre visible
+- Botón "Volver" en las páginas de detalle
+- Enlaces claros y fáciles de encontrar
+- Footer con información adicional
+
+#### Imágenes de Productos
+- **Imagen Principal**: Cada producto puede tener una imagen principal
+- **Imágenes Adicionales**: Los productos pueden tener varias imágenes
+- **Galería Interactiva**: Ver todas las imágenes en el detalle del producto
+- **Fallback**: Si un producto no tiene imagen, se muestra un placeholder
+
+#### Búsqueda y Filtros
+- Búsqueda en tiempo real
+- Filtros que se pueden combinar
+- Resultados que se actualizan automáticamente
+- Fácil de limpiar y empezar de nuevo
+
+### Qué Productos se Muestran
+La tienda muestra automáticamente:
+- **Solo productos con stock**: No se muestran productos sin unidades disponibles
+- **Solo productos activos**: No se muestran productos desactivados
+- **Con imágenes**: Si el producto tiene imágenes, se muestran
+- **Precios actuales**: Los precios mostrados son los más recientes
+
+### Ventajas de la Tienda Web
+- **Accesible 24/7**: Disponible en cualquier momento
+- **Sin registro**: No necesitas crear una cuenta para ver productos
+- **Información completa**: Precios, stock, imágenes, todo en un solo lugar
+- **Fácil de usar**: Interfaz intuitiva que cualquiera puede usar
+- **Actualizada**: Los productos y precios se actualizan automáticamente
+- **Responsive**: Funciona perfectamente en cualquier dispositivo
+- **Profesional**: Da una imagen profesional de tu negocio
+
+### Para Administradores
+Los administradores pueden:
+
+#### Agregar Imágenes a Productos
+1. Ir a la sección "Productos" en el panel de administración
+2. Editar un producto
+3. Subir imágenes usando la opción de carga de archivos
+4. Seleccionar una imagen principal
+5. Agregar imágenes adicionales
+6. Las imágenes aparecerán automáticamente en la tienda web
+
+#### Gestionar Productos para la Tienda
+- Los productos que agregues al sistema aparecerán automáticamente en la tienda
+- Solo se muestran productos con stock disponible
+- Los precios se actualizan automáticamente
+- Las imágenes se muestran si están disponibles
+
+### Casos de Uso
+
+#### Cliente Busca un Producto
+1. Cliente entra a la tienda web
+2. Usa la barra de búsqueda o los filtros
+3. Ve los productos disponibles con imágenes y precios
+4. Hace clic en un producto para ver más detalles
+5. Ve el stock disponible y las sucursales
+6. Contacta para realizar la compra
+
+#### Cliente Explora por Categoría
+1. Cliente entra a la tienda web
+2. Selecciona una categoría del filtro
+3. Ve todos los productos de esa categoría
+4. Puede combinar con filtro de marca o sucursal
+5. Encuentra el producto que busca
+
+#### Administrador Publica Productos
+1. Administrador agrega productos al sistema
+2. Sube imágenes de los productos
+3. Los productos aparecen automáticamente en la tienda
+4. Los clientes pueden verlos inmediatamente
+
+### Notas Importantes
+- La tienda es pública, no requiere autenticación
+- Solo muestra productos con stock disponible
+- Las imágenes son opcionales pero recomendadas
+- Los precios se actualizan automáticamente desde el sistema
+- El stock mostrado es en tiempo real
+- La tienda se adapta a cualquier dispositivo
+
 
 **Versión del Documento**: 1.0  
 **Fecha**: 2024  
