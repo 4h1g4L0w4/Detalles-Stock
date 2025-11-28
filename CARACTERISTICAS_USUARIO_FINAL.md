@@ -345,6 +345,137 @@ Información que se puede ingresar:
 
 ---
 
+## 💳 Chequera (Solo Administradores)
+
+La chequera permite llevar un registro completo de todos los cheques emitidos, con la posibilidad de vincularlos a proveedores y realizar búsquedas avanzadas.
+
+### Ver Lista de Cheques
+Tabla que muestra todos los cheques registrados con:
+- Número de cheque
+- Fecha (mostrada como día/mes/año)
+- Detalle de la operación
+- Saldo o monto del cheque
+- Proveedor asociado (si tiene uno)
+- Usuario que creó el cheque
+- Botones para editar o eliminar
+
+### Crear un Nuevo Cheque
+Al hacer clic en "Nuevo Cheque", se abre un modal con diseño de cheque real donde puedes ingresar:
+
+#### Campos del Cheque
+- **Número de Cheque**: El número del cheque (obligatorio)
+- **Fecha**: Seleccionar la fecha del cheque usando el calendario (obligatorio)
+  - La fecha se muestra como día/mes/año
+- **Detalle de la Operación**: Descripción o motivo del cheque (opcional)
+  - Ejemplo: "Pago a proveedor por mercadería recibida"
+- **Saldo**: Monto del cheque en pesos (obligatorio)
+  - Se ingresa como número con decimales
+- **Proveedor**: Seleccionar un proveedor de la lista (opcional)
+  - Si el cheque está relacionado con un proveedor, puedes vincularlo
+  - Si no está relacionado con ningún proveedor, puedes dejarlo vacío
+
+#### Diseño del Modal
+- El modal tiene un diseño que simula un cheque real
+- Líneas punteadas y bordes que recuerdan a un cheque físico
+- Campos con líneas para escribir, como en un cheque real
+
+### Editar un Cheque
+- Hacer clic en "Editar" en la fila del cheque
+- Se abre el mismo modal con los datos cargados
+- Modificar cualquier campo
+- Guardar los cambios
+
+### Eliminar un Cheque
+- Hacer clic en "Eliminar" en la fila del cheque
+- El sistema pregunta confirmación antes de eliminar
+- Una vez confirmado, el cheque se elimina permanentemente
+
+### Buscar y Filtrar Cheques
+El sistema ofrece múltiples formas de encontrar cheques:
+
+#### Búsqueda General
+- **Barra de búsqueda**: Escribir cualquier texto para buscar
+- Busca en el número de cheque y en el detalle de la operación
+- Los resultados se actualizan mientras escribes
+
+#### Filtros Específicos
+- **Por número de cheque**: Filtrar cheques por su número específico
+- **Por proveedor**: Ver solo los cheques de un proveedor determinado
+  - Seleccionar el proveedor del menú desplegable
+  - Ver todos los cheques vinculados a ese proveedor
+- **Por fecha desde**: Ver cheques desde una fecha específica
+  - Seleccionar la fecha inicial del rango
+- **Por fecha hasta**: Ver cheques hasta una fecha específica
+  - Seleccionar la fecha final del rango
+
+#### Combinar Filtros
+- Puedes usar varios filtros al mismo tiempo
+- Por ejemplo: buscar cheques de un proveedor específico entre dos fechas
+- Los resultados se actualizan automáticamente al cambiar cualquier filtro
+
+### Información Mostrada
+Cada cheque en la lista muestra:
+- **Número de cheque**: En negrita para fácil identificación
+- **Fecha**: Formato día/mes/año (ej: 15/03/2024)
+- **Detalle**: Descripción completa de la operación
+- **Saldo**: Monto en verde y con formato de moneda (ej: $50.000,00)
+- **Proveedor**: Nombre del proveedor si está vinculado, o "-" si no tiene
+- **Creado por**: Nombre del usuario que registró el cheque
+- **Fecha de creación**: Fecha y hora en que se registró en el sistema
+
+### Ordenamiento
+- Los cheques se muestran ordenados por fecha (más recientes primero)
+- Si dos cheques tienen la misma fecha, se ordenan por fecha de creación
+
+### Casos de Uso Comunes
+
+#### Registrar un Cheque Emitido
+1. Administrador va a "Chequera"
+2. Hace clic en "Nuevo Cheque"
+3. Ingresa el número del cheque
+4. Selecciona la fecha del cheque
+5. Escribe el detalle (ej: "Pago a proveedor ABC por factura 12345")
+6. Ingresa el monto del cheque
+7. Selecciona el proveedor si corresponde
+8. Hace clic en "Crear Cheque"
+9. El cheque queda registrado y aparece en la lista
+
+#### Buscar un Cheque Específico
+1. Administrador va a "Chequera"
+2. Escribe el número del cheque en la barra de búsqueda
+3. O selecciona el proveedor en el filtro
+4. O selecciona el rango de fechas
+5. El sistema muestra solo los cheques que coinciden
+
+#### Ver Cheques de un Proveedor
+1. Administrador va a "Chequera"
+2. Selecciona el proveedor en el filtro "Proveedor"
+3. El sistema muestra todos los cheques vinculados a ese proveedor
+4. Puede ver el historial completo de pagos con cheques a ese proveedor
+
+#### Ver Cheques de un Período
+1. Administrador va a "Chequera"
+2. Selecciona "Fecha desde" y "Fecha hasta"
+3. El sistema muestra todos los cheques emitidos en ese período
+4. Útil para hacer reportes mensuales o anuales
+
+### Ventajas de la Chequera
+- **Registro completo**: Todos los cheques quedan registrados en un solo lugar
+- **Búsqueda rápida**: Encontrar cualquier cheque en segundos
+- **Vinculación con proveedores**: Saber qué cheques están relacionados con cada proveedor
+- **Historial**: Ver el historial completo de cheques emitidos
+- **Trazabilidad**: Saber quién y cuándo registró cada cheque
+- **Filtros avanzados**: Encontrar información específica fácilmente
+
+### Notas Importantes
+- Solo los administradores pueden acceder a la chequera
+- Los cheques no se pueden modificar después de ser eliminados
+- La fecha del cheque puede ser diferente a la fecha en que se registra en el sistema
+- El proveedor es opcional, puedes registrar cheques sin vincularlos a un proveedor
+- El sistema registra automáticamente quién creó cada cheque
+
+---
+
 ## 🎨 Características Generales de la Interfaz
 
 ### Menú Lateral
@@ -358,6 +489,7 @@ Panel izquierdo con acceso a todas las secciones:
 - Proveedores (solo administradores)
 - Sucursales (solo administradores)
 - Usuarios (solo administradores)
+- Chequera (solo administradores)
 
 ### Información del Usuario
 En la parte inferior del menú:
@@ -434,6 +566,14 @@ En la parte inferior del menú:
 4. Agrega los productos que quiere mover y las cantidades
 5. Agrega un motivo (opcional)
 6. Confirma y el stock se actualiza en ambas sucursales
+
+### Registrar un Cheque
+1. Administrador va a "Chequera"
+2. Hace clic en "Nuevo Cheque"
+3. Completa el número de cheque, fecha, detalle y saldo
+4. Selecciona el proveedor si corresponde
+5. Hace clic en "Crear Cheque"
+6. El cheque queda registrado en el sistema
 
 ---
 
