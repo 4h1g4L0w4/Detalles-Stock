@@ -10,9 +10,10 @@ Este documento describe todas las funcionalidades que el usuario puede ver y usa
 
 ### Pantalla de Login
 - **Ingresar con usuario y contraseña**: El usuario debe ingresar su nombre de usuario y contraseña para acceder al sistema
-- **Dos tipos de usuarios**:
+- **Tres tipos de usuarios**:
   - **Administrador**: Tiene acceso a todas las funciones del sistema
   - **Vendedor**: Puede realizar ventas y consultar información, pero no puede modificar configuraciones
+  - **Transportista**: Tiene acceso a un dashboard móvil para gestionar sus envíos asignados
 
 ---
 
@@ -315,7 +316,7 @@ Información que se puede ingresar:
 - Nombre completo
 - Email
 - Contraseña
-- Rol (Administrador o Vendedor)
+- Rol (Administrador, Vendedor o Transportista)
 
 ### Editar Usuario
 - Modificar información del usuario
@@ -490,6 +491,9 @@ Panel izquierdo con acceso a todas las secciones:
 - Sucursales (solo administradores)
 - Usuarios (solo administradores)
 - Chequera (solo administradores)
+- Envíos (solo administradores)
+
+**Nota**: Los transportistas tienen un dashboard móvil especial y no ven este menú lateral
 
 ### Información del Usuario
 En la parte inferior del menú:
@@ -590,6 +594,15 @@ En la parte inferior del menú:
 - Se generan automáticamente con CAE (Código de Autorización Electrónico)
 - La factura se envía por WhatsApp al número de teléfono del cliente
 
+### Notificaciones de Estado de Envíos
+- Cuando se crea un envío, el cliente recibe automáticamente un mensaje por WhatsApp informando que su pedido está en depósito
+- Cada vez que el transportista actualiza el estado del envío, el cliente recibe una notificación automática:
+  - Cuando el pedido sale en camino
+  - Cuando el transportista llega al destino
+  - Cuando el pedido es entregado exitosamente
+- Los mensajes incluyen toda la información relevante: dirección, transportista, estado actual
+- El cliente siempre está informado sin necesidad de consultar manualmente
+
 ### Historial Completo
 - Todas las operaciones quedan registradas
 - Se puede ver el historial de ventas, movimientos de stock, etc.
@@ -677,6 +690,249 @@ El asistente entiende preguntas escritas de manera natural, como:
 - El asistente solo puede **consultar** información, no puede realizar ventas ni modificar datos
 - El asistente responde en tiempo real con la información más actualizada del sistema
 - Puedes hacer múltiples preguntas en la misma conversación
+
+---
+
+## 🚚 Gestión de Envíos (Solo Administradores)
+
+El sistema permite gestionar envíos y asignarlos a transportistas para realizar entregas a clientes.
+
+### Ver Lista de Envíos
+Tabla que muestra todos los envíos con:
+- Transportista asignado
+- Número de teléfono del cliente
+- Dirección de envío
+- Estado actual del envío (con colores indicativos)
+- Fecha de asignación
+- Botones para editar o eliminar
+
+### Crear un Nuevo Envío
+Al hacer clic en "Nuevo Envío", se abre un formulario donde puedes ingresar:
+
+#### Campos del Envío
+- **Transportista**: Seleccionar el transportista que realizará la entrega (obligatorio)
+  - Solo se muestran usuarios con rol "Transportista"
+  - Una vez asignado, no se puede cambiar
+- **Número de Teléfono del Cliente**: Teléfono del destinatario (obligatorio)
+  - Formato: número completo con código de país
+  - Ejemplo: 5491123456789
+- **Dirección de Envío**: Dirección completa donde se debe entregar (obligatorio)
+  - Se puede escribir en varias líneas
+  - Incluir calle, número, ciudad, código postal, etc.
+- **Observaciones**: Notas adicionales sobre el envío (opcional)
+  - Instrucciones especiales, referencias, etc.
+
+### Editar un Envío
+- Hacer clic en "Editar" en la fila del envío
+- Se puede modificar:
+  - Teléfono del cliente
+  - Dirección de envío
+  - Observaciones
+- **No se puede cambiar el transportista** una vez asignado
+
+### Eliminar un Envío
+- Hacer clic en "Eliminar" en la fila del envío
+- El sistema pregunta confirmación antes de eliminar
+- Una vez eliminado, el envío desaparece del sistema
+
+### Filtrar Envíos
+- **Por transportista**: Ver solo los envíos de un transportista específico
+- **Por estado**: Filtrar por estado del envío:
+  - En Depósito
+  - En Camino
+  - Llegada a Destino
+  - Entregado
+- **Combinar filtros**: Usar ambos filtros al mismo tiempo
+
+### Estados de Envío
+Los envíos tienen 4 estados posibles:
+- **En Depósito** (gris): El envío está en el depósito, esperando ser cargado
+- **En Camino** (azul): El transportista cargó el pedido y está en camino
+- **Llegada a Destino** (amarillo): El transportista llegó al destino
+- **Entregado** (verde): El envío fue entregado exitosamente
+
+### Notificaciones Automáticas por WhatsApp
+Cuando se crea o actualiza un envío, el sistema envía automáticamente mensajes informativos por WhatsApp al cliente:
+
+#### Mensaje al Crear el Envío
+Cuando el administrador crea un nuevo envío, el cliente recibe inmediatamente un mensaje:
+- **Estado**: "Tu pedido está en nuestro depósito, listo para ser despachado"
+- Incluye la dirección de entrega
+- Informa que pronto comenzará su viaje
+
+#### Mensajes al Actualizar el Estado
+Cada vez que el transportista actualiza el estado del envío, el cliente recibe un mensaje automático:
+
+1. **Cuando el pedido sale en camino**:
+   - Mensaje: "¡Tu Pedido está en Camino!"
+   - Incluye dirección de entrega
+   - Muestra el nombre del transportista
+   - Informa que llegará pronto
+
+2. **Cuando el transportista llega al destino**:
+   - Mensaje: "¡Hemos Llegado a tu Dirección!"
+   - Incluye la dirección completa
+   - Muestra el nombre del transportista
+   - Solicita estar disponible para recibir
+
+3. **Cuando el pedido es entregado**:
+   - Mensaje: "¡Pedido Entregado Exitosamente!"
+   - Confirma la entrega
+   - Incluye información del transportista
+   - Agradece al cliente
+
+#### Características de los Mensajes
+- **Automáticos**: Se envían sin intervención manual
+- **Informativos**: Incluyen toda la información relevante del envío
+- **Profesionales**: Mensajes claros y amigables
+- **En tiempo real**: El cliente recibe la notificación inmediatamente
+
+#### Ventajas para el Cliente
+- **Siempre informado**: Sabe en todo momento dónde está su pedido
+- **No necesita consultar**: Recibe las actualizaciones automáticamente
+- **Transparencia**: Conoce quién está realizando la entrega
+- **Preparación**: Puede estar listo cuando el transportista llegue
+
+---
+
+## 📱 Dashboard de Transportista
+
+Los transportistas tienen acceso a un dashboard móvil especial diseñado para usar desde el celular.
+
+### Acceso al Dashboard
+- Los transportistas ingresan con su usuario y contraseña
+- Automáticamente son redirigidos a su dashboard móvil
+- No ven el menú lateral ni las otras secciones del sistema
+
+### Ver Mis Envíos
+El dashboard muestra una lista de todos los envíos asignados al transportista:
+- Cada envío se muestra en una tarjeta con:
+  - Estado actual (con color indicativo)
+  - Teléfono del cliente
+  - Dirección de envío
+  - Fecha de asignación
+  - Botón para ver la hoja de ruta completa
+
+### Filtrar Envíos
+- Selector en la parte superior para filtrar por estado
+- Ver solo envíos en un estado específico
+- Ver todos los envíos
+
+### Actualizar Estado del Envío
+Cada envío tiene botones para avanzar en el proceso de entrega:
+
+#### Flujo de Estados
+1. **"En Depósito"** → Botón: **"🚚 Pedido Cargado y en Camino"**
+   - Se muestra cuando el envío está en depósito
+   - Al hacer clic, el estado cambia a "En Camino"
+
+2. **"En Camino"** → Botón: **"📍 Llegada a Destino"**
+   - Se muestra cuando el envío está en camino
+   - Al hacer clic, el estado cambia a "Llegada a Destino"
+
+3. **"Llegada a Destino"** → Botón: **"✅ Entregado"**
+   - Se muestra cuando el transportista llegó al destino
+   - Al hacer clic, el estado cambia a "Entregado"
+
+4. **"Entregado"** → Mensaje: **"✓ Envío Completado"**
+   - Ya no se pueden hacer más cambios
+   - El envío está finalizado
+
+### Hoja de Ruta
+Al hacer clic en "Ver Hoja de Ruta" de un envío, se abre un modal con:
+
+#### Información Completa
+- **Estado Actual**: Muestra el estado actual con color
+- **Teléfono del Cliente**: Número completo para contactar
+- **Dirección de Envío**: Dirección completa de entrega
+- **Observaciones**: Notas adicionales si las hay
+
+#### Botones de Acción
+- Los mismos botones para cambiar el estado
+- Aparecen en el orden correcto según el estado actual
+- Solo se puede avanzar, no retroceder
+
+#### Historial de Estados
+- Muestra todos los cambios de estado que ha tenido el envío
+- Incluye:
+  - Estado anterior y nuevo
+  - Fecha y hora del cambio
+  - Usuario que realizó el cambio
+
+### Características del Dashboard Móvil
+- **Diseño Responsive**: Optimizado para pantallas de celular
+- **Fácil de Usar**: Botones grandes y fáciles de tocar
+- **Colores Indicativos**: Cada estado tiene un color diferente
+- **Información Clara**: Todo lo necesario está visible de un vistazo
+- **Actualización en Tiempo Real**: Los cambios se guardan inmediatamente
+
+### Casos de Uso del Transportista
+
+#### Iniciar una Entrega
+1. Transportista abre su dashboard
+2. Ve el envío asignado en estado "En Depósito"
+3. Hace clic en "🚚 Pedido Cargado y en Camino"
+4. El estado se actualiza y el botón desaparece
+5. Aparece el siguiente botón "📍 Llegada a Destino"
+
+#### Llegar al Destino
+1. Transportista llega a la dirección
+2. Hace clic en "📍 Llegada a Destino"
+3. El estado se actualiza
+4. Aparece el botón final "✅ Entregado"
+
+#### Completar la Entrega
+1. Transportista entrega el pedido al cliente
+2. Hace clic en "✅ Entregado"
+3. El envío queda marcado como completado
+4. El cliente recibe automáticamente un mensaje de confirmación por WhatsApp
+5. Ya no se pueden hacer más cambios
+
+### Notificaciones Automáticas al Cliente
+Cada vez que el transportista actualiza el estado del envío, el sistema envía automáticamente un mensaje por WhatsApp al cliente:
+
+#### Cuando Presiona "Pedido Cargado y en Camino"
+- El cliente recibe: "¡Tu Pedido está en Camino!"
+- Incluye la dirección de entrega
+- Muestra el nombre del transportista
+- Informa que el pedido está en ruta
+
+#### Cuando Presiona "Llegada a Destino"
+- El cliente recibe: "¡Hemos Llegado a tu Dirección!"
+- Incluye la dirección completa
+- Muestra el nombre del transportista
+- Solicita estar disponible para recibir
+
+#### Cuando Presiona "Entregado"
+- El cliente recibe: "¡Pedido Entregado Exitosamente!"
+- Confirma la entrega completa
+- Incluye información del transportista
+- Agradece al cliente
+
+#### Características
+- **Automático**: No necesitas hacer nada adicional, el mensaje se envía solo
+- **Inmediato**: El cliente recibe la notificación al instante
+- **Informativo**: Incluye todos los datos relevantes del envío
+- **Profesional**: Mensajes claros y amigables
+
+### Ventajas del Sistema de Envíos
+- **Seguimiento en Tiempo Real**: El administrador puede ver el estado de cada envío
+- **Trazabilidad Completa**: Se registra quién y cuándo cambió cada estado
+- **Fácil de Usar**: El transportista solo necesita tocar botones
+- **Información Centralizada**: Todos los datos del envío en un solo lugar
+- **Historial Completo**: Se guarda el historial de todos los cambios
+- **Comunicación Automática**: Los clientes reciben notificaciones automáticas por WhatsApp
+- **Transparencia Total**: El cliente siempre sabe dónde está su pedido
+- **Mejor Experiencia**: El cliente no necesita llamar para consultar el estado
+
+### Notas Importantes
+- Solo los administradores pueden crear y asignar envíos
+- Los transportistas solo pueden ver y actualizar sus propios envíos
+- No se puede retroceder el estado de un envío (solo avanzar)
+- Una vez que un envío está "Entregado", no se puede modificar
+- El sistema registra automáticamente quién y cuándo cambió cada estado
+- Los mensajes por WhatsApp se envían automáticamente, no requieren acción adicional
+- Si hay un error al enviar el mensaje, el estado del envío se actualiza igualmente
 
 
 **Versión del Documento**: 1.0  
